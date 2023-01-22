@@ -1,0 +1,51 @@
+openapi: 3.0.3
+info:
+  title: Api for WebLab4 definitions
+  description: Api for WebLab4 definitions
+  version: 1.0.0
+
+paths: { }
+
+components:
+  schemas:
+    ShotTableResponse:
+      description: List of shots
+      type: object
+      properties:
+        shots:
+          type: array
+          items:
+            '$ref': '#/components/schemas/Shot'
+      required:
+        - shots
+
+    Shot:
+      description: Shot info
+      properties:
+        x:
+          description: X coordinate
+          type: number
+        y:
+          description: Y coordinate
+          type: number
+        radius:
+          description: Plot radius
+          type: number
+        timestamp:
+          '$ref': '#/components/schemas/DateTimeResponse'
+        hit:
+          description: Was hit
+          type: boolean
+      required:
+        - x
+        - y
+        - radius
+        - timestamp
+
+    DateTimeResponse:
+      description: DateTime in ISO 8601 format
+      type: string
+      format: date-time
+      example: '2023-01-28T13:18:28.372123Z'
+      x-json-pattern: yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXX
+      x-default-timezone: UTC

@@ -1,0 +1,81 @@
+openapi: 3.0.3
+info:
+  description: Api for WebLab4
+  title: Api for WebLab4
+  version: '1.0'
+
+paths:
+  /v1/request/shots/get:
+    post:
+      description: |
+        Returns list of shots
+      operationId: getShots
+      tags:
+        - shot
+      parameters:
+        - '$ref': './headers.yaml#/components/parameters/UIDHeader'
+        - '$ref': './headers.yaml#/components/parameters/SessionUUIDHeader'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                '$ref': './definitions.yaml/.#/components/schemas/ShotTableResponse'
+        '400':
+          '$ref': './responses.yaml/.#/components/responses/400'
+        '500':
+          '$ref': './responses.yaml/.#/components/responses/500'
+
+
+  /v1/request/shots/delete:
+    post:
+      description: |
+        Delete all shots
+      operationId: deleteShots
+      tags:
+        - shot
+      parameters:
+        - '$ref': './headers.yaml#/components/parameters/UIDHeader'
+        - '$ref': './headers.yaml#/components/parameters/SessionUUIDHeader'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                '$ref': './definitions.yaml/.#/components/schemas/ShotTableResponse'
+        '400':
+          '$ref': './responses.yaml/.#/components/responses/400'
+        '500':
+          '$ref': './responses.yaml/.#/components/responses/500'
+
+  /v1/request/shot/perform:
+    post:
+      description: |
+        Returns list of shots
+      operationId: performShot
+      tags:
+        - shot
+      parameters:
+        - '$ref': './headers.yaml#/components/parameters/UIDHeader'
+        - '$ref': './headers.yaml#/components/parameters/SessionUUIDHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              '$ref': './definitions.yaml/.#/components/schemas/Shot'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                '$ref': './definitions.yaml/.#/components/schemas/Shot'
+        '400':
+          '$ref': './responses.yaml/.#/components/responses/400'
+        '500':
+          '$ref': './responses.yaml/.#/components/responses/500'
+
+

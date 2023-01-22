@@ -1,0 +1,25 @@
+openapi: 3.0.3
+info:
+  title: Common HTTP Headers
+  description: Common HTTP Headers
+  version: 1.0.0
+
+paths: { }
+
+components:
+  parameters:
+    SessionUUIDHeader:
+      in: header
+      name: SessionUUID
+      schema:
+        type: string
+        nullable: false
+      example: 'a82f9675-caaf-4eef-a473-0af15b7e15af'
+
+    UIDHeader:
+      in: header
+      name: UID
+      schema:
+        type: string
+        nullable: false
+      required: true

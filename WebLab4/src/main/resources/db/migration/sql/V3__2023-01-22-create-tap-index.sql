@@ -1,0 +1,1 @@
+CREATE INDEX IF NOT EXISTS tap_result_owner_id ON s335089.tap_result USING btree (owner_id)
