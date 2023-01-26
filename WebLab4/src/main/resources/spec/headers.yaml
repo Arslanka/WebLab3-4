@@ -20,6 +20,6 @@ components:
       in: header
       name: UID
       schema:
-        type: string
+        type: integer
         nullable: false
       required: true

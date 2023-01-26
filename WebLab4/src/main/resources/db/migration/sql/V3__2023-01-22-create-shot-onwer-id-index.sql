@@ -1,0 +1,1 @@
+CREATE INDEX IF NOT EXISTS shot_result_owner_id ON s335089.shot_result USING btree (owner_id)

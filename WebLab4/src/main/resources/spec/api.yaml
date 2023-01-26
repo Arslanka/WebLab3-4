@@ -65,17 +65,69 @@ paths:
         content:
           application/json:
             schema:
-              '$ref': './definitions.yaml/.#/components/schemas/Shot'
+              '$ref': './definitions.yaml/.#/components/schemas/ShotRequest'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                '$ref': './definitions.yaml/.#/components/schemas/Shot'
+                '$ref': './definitions.yaml/.#/components/schemas/ShotResponse'
         '400':
           '$ref': './responses.yaml/.#/components/responses/400'
         '500':
           '$ref': './responses.yaml/.#/components/responses/500'
 
+  /v1/user/register:
+    post:
+      description: |
+        Register a new user
+      operationId: register
+      tags:
+        - auth
+      parameters:
+        - '$ref': './headers.yaml#/components/parameters/SessionUUIDHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              '$ref': './definitions.yaml/.#/components/schemas/AuthRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                '$ref': './definitions.yaml/.#/components/schemas/AuthResponse'
+        '400':
+          '$ref': './responses.yaml/.#/components/responses/400'
+        '500':
+          '$ref': './responses.yaml/.#/components/responses/500'
 
+  /v1/user/login:
+    post:
+      description: |
+        Login a user
+      operationId: login
+      tags:
+        - auth
+      parameters:
+        - '$ref': './headers.yaml#/components/parameters/SessionUUIDHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              '$ref': './definitions.yaml/.#/components/schemas/AuthRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                '$ref': './definitions.yaml/.#/components/schemas/AuthResponse'
+        '400':
+          '$ref': './responses.yaml/.#/components/responses/400'
+        '500':
+          '$ref': './responses.yaml/.#/components/responses/500'

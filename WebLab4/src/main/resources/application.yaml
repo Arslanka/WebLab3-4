@@ -1,11 +1,16 @@
 spring:
+  application:
+    name: WebLab4
   datasource:
     url: "jdbc:postgresql://localhost:5432/postgres"
     username: postgres
     password: admin
+    driverClassName: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 10
 
   flyway:
     enabled: true
-
 server:
   port: 9909
