@@ -1,0 +1,9 @@
+{
+  "hikari_config": {
+    "hikari_properties": {
+      "cachePrepStmts": "true",
+      "prepStmtCacheSize": "250",
+      "prepStmtCacheSqlLimit": "2048"
+    }
+  }
+}

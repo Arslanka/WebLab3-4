@@ -1,0 +1,1 @@
+CREATE INDEX tap_session_id ON s335089.tap USING btree (session_id)

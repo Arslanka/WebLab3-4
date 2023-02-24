@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:p="http://primefaces.org/ui">
+>
+<f:view>
+    <h:head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>WebLab3</title>
+        <link rel="stylesheet" href="styles/style.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script type="module" src="https://requirejs.org/docs/release/2.3.6/minified/require.js"></script>
+        <script src="js/timezoneSetter.js" />
+        <script src="js/lengthLimiter.js" />
+        <script src="js/clickCalculator.js" />
+        <script src="js/initializer.js" />
+    </h:head>
+    <h:body>
+        <div class="container">
+            <div class="header-item" id="header-item"><h:link outcome="goToMain">
+                Arzmonstr's lair
+            </h:link></div>
+            <div class="graph-item">
+                <h:panelGroup layout="block" id="graph" class="in-sender graph">
+                    <ui:include src="graph.xhtml" />
+                </h:panelGroup>
+            </div>
+            <div class="form-item" id="form-item">
+                <h:form id="form">
+                    <legend class="form_name">Select (x, y) and R</legend>
+                    <div class="form-field">
+                        <span>Enter X:</span>
+                        <h:inputText id="x_value"
+                                minlength="1"
+                                requiredMessage="The X coordinate was expected!"
+                                maxlength="6"
+                                converterMessage="Range [-1;4]"
+                                validatorMessage="Range [-1;4]"
+                                value="#{point2D.x}">
+                            <f:validateDoubleRange minimum="-1" maximum="4" />
+                            <f:validateLength minimum="1" maximum="6" />
+                        </h:inputText>
+                        <br />
+                        <h:message class="message" for="x_value" id="x_msg" infoClass="info" errorClass="error" />
+                    </div>
+                    <div class="form-field">
+                        <span>Enter Y:</span>
+                        <h:inputText id="y_value"
+                                minlength="1"
+                                requiredMessage="The Y coordinate was expected!"
+                                maxlength="6"
+                                converterMessage="Range [-3;5]"
+                                validatorMessage="Range [-3;5]"
+                                value="#{point2D.y}">
+                            <f:validateDoubleRange minimum="-3" maximum="5" />
+                            <f:validateLength minimum="1" maximum="6" />
+                        </h:inputText>
+                        <br />
+                        <h:message class="message" for="y_value" id="y_msg" infoClass="info" errorClass="error" />
+                    </div>
+                    <div class="form-field">
+                        <span>Enter R:</span>
+                        <h:inputText id="r_value"
+                                requiredMessage="The R was expected!"
+                                minlength="1"
+                                maxlength="6"
+                                converterMessage="Range [1;4]"
+                                validatorMessage="Range [1;4]"
+                                value="#{requestBean.radius}">
+                            <f:validateDoubleRange minimum="1" maximum="4" />
+                            <f:validateLength minimum="1" maximum="6" />
+                        </h:inputText>
+                        <br />
+                        <h:message class="message" for="r_value" id="r_msg" infoClass="info" errorClass="error" />
+                    </div>
+                    <div>
+                        <h:commandButton id="submit" value="Submit" onclick="setTimezone()"
+                                action="#{areaCheckController.checkHitAndSave()}">
+                            <f:ajax execute="@form"
+                                    render="x_msg y_msg r_msg result_table graph" />
+                        </h:commandButton>
+                    </div>
+                    <div>
+                        <h:commandButton id="clear" value="Clear"
+                                action="#{tableRequestController.clearTable()}">
+                            <f:ajax execute="@form"
+                                    render="result_table graph" />
+                        </h:commandButton>
+                    </div>
+                </h:form>
+            </div>
+            <div class="table-item" id="table-item">
+                <h:dataTable id="result_table" value="#{tableRequestController.table}" var="tableRowBean">
+                    <h:column>
+                        <f:facet name="header">X:</f:facet>
+                        #{tableRowBean.point2D.x}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Y:</f:facet>
+                        #{tableRowBean.point2D.y}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">R:</f:facet>
+                        #{tableRowBean.radius}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Hit</f:facet>
+                        #{tableRowBean.hit}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Request time</f:facet>
+                        <h:outputText value="#{tableRowBean.requestTime}">
+                            <f:convertDateTime type="zonedDateTime" pattern="yyyy-MM-dd HH:mm:ss" />
+                        </h:outputText>
+                    </h:column>
+                </h:dataTable>
+            </div>
+            <div class="footer-item">
+                <p>Author: Giniyatullin Arslan</p>
+                <p>Group: P32121</p>
+                <p>© 1993-2022 ITMO University</p>
+            </div>
+        </div>
+    </h:body>
+</f:view>
+</html>

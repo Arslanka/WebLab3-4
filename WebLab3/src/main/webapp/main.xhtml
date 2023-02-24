@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+>
+<h:head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebLab3</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="module" src="https://requirejs.org/docs/release/2.3.6/minified/require.js"></script>
+    <script src="js/timeUpdater.js"></script>
+</h:head>
+<h:body>
+    <div class="container">
+        <div class="header-item" id="header-item">
+            <h:link outcome="goToIndex">
+                Arzmonstr's lair
+            </h:link>
+        </div>
+        <div class="footer-time-wrapper" id="footer-time-wrapper">
+            <div class="datetime_date"> <!-- Date from JS --> </div>
+            <div class="datetime_time"> <!-- Time from JS --> </div>
+        </div>
+    </div>
+</h:body>
+</html>

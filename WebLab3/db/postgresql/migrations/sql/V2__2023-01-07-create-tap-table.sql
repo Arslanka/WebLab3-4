@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS s335089.tap
+(
+    id         BIGINT PRIMARY KEY,
+    session_id VARCHAR(256) NOT NULL
+)
